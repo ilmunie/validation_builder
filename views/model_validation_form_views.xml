@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<odoo>
+        <record id="model_validation_tree_view" model="ir.ui.view">
+            <field name="name">model.validation.tree.view</field>
+            <field name="model">model.validation</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <tree string="Model Validation" sample="1" >
+                    <field name="name" optional="show"/>
+                    <field name="model_id" optional="show"/>
+                    <field name="active" optional="show"/>
+                </tree>
+            </field>
+        </record>
+
+       <record id="model_validation_config_lines_form_view" model="ir.ui.view">
+            <field name="name">model.validation.config.form.lines.view</field>
+            <field name="model">model.validation.line</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="model_id"  />
+                            <field name="model_name" />
+                        </group>
+                        <group>
+                            <field name="validation_type" />
+                            <field name="validation_message"/>
+                            <field name = "active"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="domain_condition"/>
+                            <field name="domain_to_check" widget="domain" options="{'model': 'model_name', 'in_dialog': true}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+
+            </field>
+        </record>
+
+
+        <record id="model_validation_form_view" model="ir.ui.view">
+            <field name="name">model.validation.form.view</field>
+            <field name="model">model.validation</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+            <form>
+                <sheet>
+
+                    <group>
+                        <group>
+                            <field name="name"  />
+                            <field name = "model_id" options="{'no_create':True,'no_create_and_edit':True,'no_open':True,'no_quick_create':True}"/>
+                        </group>
+                        <group>
+                            <field name = "model_name" invisible="True"/>
+                            <field name = "active"/>
+                            <field name="domain_trigger" widget="domain" options="{'model': 'model_name', 'in_dialog': true}"/>
+                        </group>
+                    </group>
+                    <field name="line_ids" mode="tree,form" attrs="{'invisible': [ ('model_id', '=', False)]}">
+                        <tree  create = '1' delete = '1'>
+                            <field name="validation_type"/>
+                            <field name="validation_message"/>
+                            <field name="domain_condition"/>
+                            <field name="domain_to_check" options="{'model': 'model_name', 'in_dialog': true}"/>
+                            <field name="model_name" invisible="1"/>
+                            <field name="register_in_chatter"/>
+                            <field name="active"/>
+
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="model_validation_action">
+            <field name="name">Model Validation Configuration</field>
+            <field name="res_model">model.validation</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem
+            id="menu_model_validation"
+            name="Model Validation Configuration"
+            parent = "resource.menu_resource_config"
+            action = "validation_builder.model_validation_action"/>
+</odoo>

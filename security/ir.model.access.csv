@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_model_validation_line,activity_automation.model_validation_line,model_model_validation_line,base.group_user,1,1,1,1
+access_model_validation,activity_automation.model_validation,model_model_validation,base.group_user,1,1,1,1
+
+
+
