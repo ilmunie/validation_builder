@@ -42,6 +42,7 @@ class ModelValidatorMixin(models.AbstractModel):
 
     def write(self, vals):
         res = super().write(vals)
+        action = False
         validation_configs_to_check = self.env['model.validation'].search([('model_id', '=', self._name), ('active_rec', '=', True)])
         if validation_configs_to_check:
             messages = []

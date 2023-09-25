@@ -17,8 +17,12 @@
         'purchase',
         'stock',
         'account',
-        'web_notify',
     ],
+    "assets": {
+        "web.assets_backend": [
+            "validation_builder/static/src/js/services/*.js",
+        ]
+    },
     'data': [
         'views/model_validation_form_views.xml',
         'security/ir.model.access.csv',
