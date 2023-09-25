@@ -18,6 +18,7 @@
         'stock',
         'account',
         'web_notify',
+        'account_import_clearance',
     ],
     'data': [
         'views/model_validation_form_views.xml',

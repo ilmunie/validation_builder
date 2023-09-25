@@ -16,7 +16,7 @@ class ModelValidation(models.Model):
 
     name = fields.Char(string="Name", required=True)
     active_rec = fields.Boolean(default=True)
-    model_id = fields.Many2one('ir.model', domain=[('model', 'in', ('product.product','product.template','res.partner','crm.lead','sale.order','account.move', 'purchase.order','stock.picking', 'stock.picking'))])
+    model_id = fields.Many2one('ir.model', domain=[('model', 'in', ('import.clearance','product.product','product.template','res.partner','crm.lead','sale.order','account.move', 'purchase.order','stock.picking', 'stock.picking'))])
     model_name = fields.Char(related='model_id.model')
     line_ids = fields.One2many('model.validation.line', 'config_id', required=True)
     domain_trigger = fields.Char(required=True)
@@ -114,3 +114,6 @@ class ProductTemplate(models.Model, ModelValidatorMixin):
 
 class ResPartner(models.Model, ModelValidatorMixin):
     _inherit = 'res.partner'
+
+class ImportClearance(models.Model, ModelValidatorMixin):
+    _inherit = 'import.clearance'
